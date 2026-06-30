@@ -1,7 +1,5 @@
 /* ── Stats section ── */
 #stats {
-  overflow: hidden auto;
-  overscroll-behavior-y: contain;
   scrollbar-width: none;
   background:
     linear-gradient(

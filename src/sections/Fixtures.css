@@ -1,7 +1,5 @@
 /* ── Fixtures section ── */
 #fixtures {
-  overflow: hidden auto;
-  overscroll-behavior-y: contain;
   scrollbar-width: none;
   background:
     radial-gradient(ellipse 90% 45% at 50% 0%, rgba(0, 63, 135, 0.18) 0%, transparent 70%),
