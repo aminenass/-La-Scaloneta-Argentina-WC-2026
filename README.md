@@ -3,6 +3,9 @@
 A full-screen fan site tracking Argentina's FIFA World Cup 2026 campaign. Live scores, fixtures, squad, and Golden Boot stats.
 
 **Live sections:** Landing · Fixtures · Players · Stats · Scores
+
+[click to preview website](https://la-scaloneta-argentina-wc-2026.vercel.app/)
+
 ---
 
 ## Tech stack
