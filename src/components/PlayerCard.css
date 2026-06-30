@@ -1,0 +1,134 @@
+/* ── PlayerCard — Panini aesthetic ──────────────────────────────── */
+.player-card {
+  position: relative;
+  container-type: inline-size;
+  aspect-ratio: 2 / 3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: linear-gradient(165deg, #3ED9C8 0%, #28BFB0 40%, #1AA89A 75%, #0E8880 100%);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.player-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55),
+              0 0 0 1px rgba(201, 168, 76, 0.4);
+}
+
+/* Top stripe — AFA colors */
+.player-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg,
+    var(--afa-blue) 0%,
+    var(--afa-celeste) 40%,
+    var(--afa-white) 50%,
+    var(--afa-celeste) 60%,
+    var(--afa-blue) 100%
+  );
+  z-index: 3;
+}
+
+/* Diagonal shine */
+.card-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.06) 30%,
+    transparent 55%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Header ── */
+.card-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px var(--space-3) 0;
+}
+
+.card-number {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--afa-gold);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.card-pos-badge {
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--afa-white);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  padding: 3px 7px;
+  border-radius: var(--radius-full);
+  margin-top: 6px;
+}
+
+/* ── Photo ── */
+.card-photo-wrap {
+  flex: 1;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 var(--space-2);
+}
+
+.card-photo {
+  width: 95%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 -4px 12px rgba(0, 0, 0, 0.25));
+}
+
+/* ── Footer ── */
+.card-footer {
+  position: relative;
+  z-index: 3;
+  background: var(--afa-blue);
+  padding: var(--space-2) var(--space-3) var(--space-3);
+  border-top: 2px solid var(--afa-gold);
+}
+
+.card-name {
+  font-family: var(--font-display);
+  font-size: clamp(0.75rem, 5.5cqi, 1.125rem);
+  letter-spacing: 0.06em;
+  color: var(--afa-white);
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-club {
+  font-family: var(--font-body);
+  font-size: clamp(0.6rem, 3.5cqi, 0.6875rem);
+  color: var(--afa-celeste);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.85;
+}

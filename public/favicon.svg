@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c2a45"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="43%" cy="62%" r="48%">
+      <stop offset="0%" stop-color="#003F87" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#003F87" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cup" x1="0.2" y1="0" x2="0.85" y2="1">
+      <stop offset="0%" stop-color="#74ACDF"/>
+      <stop offset="100%" stop-color="#003F87"/>
+    </linearGradient>
+    <linearGradient id="straw" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#9A6F20"/>
+      <stop offset="45%" stop-color="#F0D060"/>
+      <stop offset="100%" stop-color="#C9A84C"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="32" height="32" rx="7" fill="url(#bg)"/>
+  <rect width="32" height="32" rx="7" fill="url(#glow)"/>
+
+  <path d="
+    M 11.5,14
+    C 7,15 5.5,19 6,23
+    C 6.5,27.5 10,30.5 15,30.5
+    C 20,30.5 23.5,27.5 24,23
+    C 24.5,19 23,15 18.5,14
+    L 18,11
+    L 12,11
+    Z
+  " fill="url(#cup)"/>
+
+  <rect x="11.5" y="9.5" width="8" height="1.8" rx="0.9" fill="#74ACDF"/>
+
+  <path d="M 9,18 Q 7.5,21.5 8.5,25.5"
+        stroke="white" stroke-width="1.8" stroke-linecap="round"
+        fill="none" opacity="0.15"/>
+
+  <line x1="12" y1="28.5" x2="14.5" y2="23"
+        stroke="#C9A84C" stroke-width="3.8" stroke-linecap="round"/>
+
+  <line x1="13.5" y1="27" x2="26.5" y2="3.5"
+        stroke="url(#straw)" stroke-width="2.4" stroke-linecap="round"/>
+
+  <circle cx="26.5" cy="3.5" r="1.6" fill="#F0D878"/>
+</svg>

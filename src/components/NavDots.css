@@ -1,0 +1,56 @@
+.nav-dots {
+  position: fixed;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 100;
+}
+
+.nav-dot {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  /* Visual dot is the ::after pseudo — the button itself is the 44px touch target */
+}
+
+.nav-dot::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(245, 247, 250, 0.35);
+  border: 1.5px solid rgba(245, 247, 250, 0.5);
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.7));
+  transition: transform 0.2s ease, background 0.2s ease, filter 0.2s ease;
+}
+
+.nav-dot--active::after {
+  background: var(--afa-gold);
+  border-color: var(--afa-gold);
+  transform: scale(1.35);
+}
+
+.nav-dot:focus-visible {
+  outline: none;
+}
+
+.nav-dot:focus-visible::after {
+  outline: 2px solid var(--afa-gold);
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .nav-dots {
+    right: 0.5rem;
+  }
+}
