@@ -23,6 +23,11 @@ export default function App() {
   const [appReady, setAppReady] = useState(false)
 
   useEffect(() => {
+    const timer = setTimeout(() => setAppReady(true), 2000)
+    return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
     const container = containerRef.current
     if (!container) return
 
@@ -58,7 +63,7 @@ export default function App() {
             className="snap-section"
             ref={el => (sectionRefs.current[i] = el)}
           >
-            <Component onLoad={id === 'landing' ? () => setAppReady(true) : undefined} />
+            <Component />
           </section>
         ))}
         <NavDots

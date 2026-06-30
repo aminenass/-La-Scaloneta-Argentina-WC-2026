@@ -1,13 +1,8 @@
 import { useState } from 'react'
 import './Landing.css'
 
-export default function Landing({ onLoad }) {
+export default function Landing() {
   const [loaded, setLoaded] = useState(false)
-
-  function handleLoad() {
-    setLoaded(true)
-    onLoad?.()
-  }
 
   return (
     <div className="landing">
@@ -19,7 +14,7 @@ export default function Landing({ onLoad }) {
         height="1080"
         fetchpriority="high"
         decoding="async"
-        onLoad={handleLoad}
+        onLoad={() => setLoaded(true)}
       />
       <div className="landing__overlay" />
       <div className={`landing__content${loaded ? ' landing__content--visible' : ''}`}>
