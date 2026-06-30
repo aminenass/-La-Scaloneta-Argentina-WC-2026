@@ -6,6 +6,7 @@ import Players from './sections/Players'
 import Stats from './sections/Stats'
 import Scores from './sections/Scores'
 import './App.css'
+import './spinner.css'
 
 const SECTIONS = [
   { id: 'landing',  label: 'Home',     Component: Landing },
@@ -19,6 +20,7 @@ export default function App() {
   const containerRef = useRef(null)
   const sectionRefs = useRef([])
   const [activeIndex, setActiveIndex] = useState(0)
+  const [appReady, setAppReady] = useState(false)
 
   useEffect(() => {
     const container = containerRef.current
@@ -42,22 +44,29 @@ export default function App() {
   }, [])
 
   return (
-    <div className="snap-container" ref={containerRef}>
-      {SECTIONS.map(({ id, Component }, i) => (
-        <section
-          key={id}
-          id={id}
-          className="snap-section"
-          ref={el => (sectionRefs.current[i] = el)}
-        >
-          <Component />
-        </section>
-      ))}
-      <NavDots
-        sections={SECTIONS}
-        activeIndex={activeIndex}
-        onNavigate={scrollTo}
-      />
-    </div>
+    <>
+      {!appReady && (
+        <div className="app-spinner-wrap">
+          <div className="app-spinner" />
+        </div>
+      )}
+      <div className="snap-container" ref={containerRef}>
+        {SECTIONS.map(({ id, Component }, i) => (
+          <section
+            key={id}
+            id={id}
+            className="snap-section"
+            ref={el => (sectionRefs.current[i] = el)}
+          >
+            <Component onLoad={id === 'landing' ? () => setAppReady(true) : undefined} />
+          </section>
+        ))}
+        <NavDots
+          sections={SECTIONS}
+          activeIndex={activeIndex}
+          onNavigate={scrollTo}
+        />
+      </div>
+    </>
   )
 }
