@@ -90,7 +90,7 @@ function isTodayUTC(utcDateStr) {
 export default function Scores() {
   // Full schedule (all statuses) — long TTL, no polling — used only to detect match days
   const { data: scheduleData } = useFootballApi(
-    'competitions/WC/matches?team=762',
+    'competitions/WC/matches',
     { ttl: 3600 },
   )
   const matchDayToday = (scheduleData?.matches ?? []).some(
@@ -99,11 +99,11 @@ export default function Scores() {
   )
 
   const { data: liveData, loading: liveLoading } = useFootballApi(
-    'competitions/WC/matches?team=762&status=IN_PLAY,PAUSED',
+    'competitions/WC/matches?status=IN_PLAY,PAUSED',
     { ttl: 30, pollInterval: 30, enabled: matchDayToday },
   )
   const { data: resultsData, loading: resultsLoading, error: resultsError } = useFootballApi(
-    'competitions/WC/matches?team=762&status=FINISHED',
+    'competitions/WC/matches?status=FINISHED',
     { ttl: 300 },
   )
 
