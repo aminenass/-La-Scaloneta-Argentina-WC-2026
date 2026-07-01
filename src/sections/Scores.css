@@ -200,3 +200,102 @@
   color: rgba(245, 247, 250, 0.45);
   text-align: center;
 }
+
+/* ── Site footer (Mundial variant) — mobile + tablet only ── */
+.scores-site-footer {
+  display: none; /* hidden on desktop */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--afa-surface);
+  border-top: 1px solid rgba(116, 172, 223, 0.12);
+  padding: 0.85rem 1.5rem 0.75rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+  .scores-site-footer {
+    display: flex;
+  }
+  .scores-inner {
+    padding-bottom: 6rem; /* prevent overlap with footer */
+  }
+}
+
+.ssf-pillars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 420px;
+  gap: 0;
+}
+
+.ssf-pillar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  flex: 1;
+}
+
+.ssf-sep {
+  width: 1px;
+  height: 32px;
+  background: rgba(116, 172, 223, 0.22);
+  flex-shrink: 0;
+}
+
+.ssf-val {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: var(--afa-white);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.ssf-lbl {
+  font-family: var(--font-body);
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: rgba(116, 172, 223, 0.5);
+  text-transform: uppercase;
+}
+
+.ssf-tagline {
+  font-family: var(--font-body);
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(245, 247, 250, 0.28);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.ssf-flag-dots {
+  display: none; /* desktop: hidden, cleaner */
+}
+
+/* ── Flag dots on mobile ── */
+@media (max-width: 480px) {
+  .ssf-flag-dots {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+  }
+  .ssf-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+  .ssf-dot--blue  { background: var(--afa-celeste); }
+  .ssf-dot--white { background: rgba(245, 247, 250, 0.6); }
+}

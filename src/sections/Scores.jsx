@@ -3,6 +3,30 @@ import './Scores.css'
 
 const ARG_ID = 762
 
+const STAGE_LABELS = {
+  GROUP_STAGE:    'GROUP STAGE',
+  LAST_16:        'ROUND OF 16',
+  QUARTER_FINALS: 'QUARTERS',
+  SEMI_FINALS:    'SEMI-FINALS',
+  THIRD_PLACE:    'THIRD PLACE',
+  FINAL:          'FINAL',
+}
+
+function getCurrentStage(matches) {
+  if (!matches?.length) return null
+  const live = matches.find(m => m.status === 'IN_PLAY' || m.status === 'PAUSED')
+  if (live) return STAGE_LABELS[live.stage] ?? live.stage
+  const finished = matches
+    .filter(m => m.status === 'FINISHED')
+    .sort((a, b) => new Date(b.utcDate) - new Date(a.utcDate))
+  if (finished.length) return STAGE_LABELS[finished[0].stage] ?? finished[0].stage
+  const next = matches
+    .filter(m => m.status === 'SCHEDULED' || m.status === 'TIMED')
+    .sort((a, b) => new Date(a.utcDate) - new Date(b.utcDate))
+  if (next.length) return STAGE_LABELS[next[0].stage] ?? next[0].stage
+  return null
+}
+
 function ScoreCard({ match }) {
   const live = match.status === 'IN_PLAY' || match.status === 'PAUSED'
   const isPens = match.score?.duration === 'PENALTY_SHOOTOUT'
@@ -83,6 +107,8 @@ export default function Scores() {
     { ttl: 300 },
   )
 
+  const currentStage = getCurrentStage(scheduleData?.matches)
+
   const liveMatches = liveData?.matches ?? []
   const finishedMatches = (resultsData?.matches ?? [])
     .slice()
@@ -140,6 +166,30 @@ export default function Scores() {
           </>
         )}
       </div>
+      <footer className="scores-site-footer">
+        <div className="ssf-pillars">
+          <div className="ssf-pillar">
+            <span className="ssf-val">{currentStage ?? 'WC 2026'}</span>
+            <span className="ssf-lbl">COMPETITION</span>
+          </div>
+          <div className="ssf-sep" />
+          <div className="ssf-pillar">
+            <span className="ssf-val">WC 2026</span>
+            <span className="ssf-lbl">EDITION</span>
+          </div>
+          <div className="ssf-sep" />
+          <div className="ssf-pillar">
+            <span className="ssf-val">ARG</span>
+            <span className="ssf-lbl">LA ALBICELESTE</span>
+          </div>
+        </div>
+        <div className="ssf-flag-dots">
+          <span className="ssf-dot ssf-dot--blue" />
+          <span className="ssf-dot ssf-dot--white" />
+          <span className="ssf-dot ssf-dot--blue" />
+        </div>
+        <p className="ssf-tagline">BUILT FOR FANS OF LA ALBICELESTE</p>
+      </footer>
     </>
   )
 }

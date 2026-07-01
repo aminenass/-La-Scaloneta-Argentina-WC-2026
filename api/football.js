@@ -29,9 +29,7 @@ export default async function handler(req, res) {
 
     const data = await upstream.json();
 
-    const cacheControl = upstream.headers.get('Cache-Control');
-    if (cacheControl) res.setHeader('Cache-Control', cacheControl);
-
+    res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=60');
     res.status(upstream.status).json(data);
   } catch {
     res.status(502).json({ error: 'Upstream fetch failed' });
